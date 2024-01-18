@@ -7,7 +7,7 @@
         <link href="https://fonts.cdnfonts.com/css/instruction" rel="stylesheet">
         <style>
             body {
-                background: #fff; /* Change background to grey for a gaming feel */
+                background: #000; /* Change background to grey for a gaming feel */
                 font-family: 'Instruction', sans-serif;
                 color: #fff; /* Change font color to white for contrast */
             }
@@ -46,39 +46,12 @@
                 background-color: #343a40; /* Darken card background for a gaming feel */
                 color: #fff; /* Change text color to white for contrast */
             }
-
-            h1.text-center.mb-3 {
-                color: #000;
-                font-size: 60px;
-            }
-
-            .card {
-                /* existing styles */
-                height: 4vh;
-                background-color: #343a40;
-                color: #fff;
-                display: flex;
-                justify-content: center; /* Horizontally center the text */
-                align-items: center; /* Vertically center the text */
-            }
-            .header-container {
-                margin-bottom: 0px; /* Adjust as needed */
-            }
         </style>
-
-        
     </head>
-    <body>
-        <div class="header-container d-flex align-items-center justify-content-center">
-            <h1 class="text-center mb-3">BABAK ELEMINASI</h1>
-            </div>
-            <div class="header-container d-flex align-items-center justify-content-center">
-            <h1 class="text-center mb-3">GROUP {{ group_letter }} BO1</h1>
-        </div>
 <div class="container py-4 left-align-container">
     <div class="row">
         <div class="col-md-4">
- <!--          <h1 class="text-center mb-3">BABAK ELEMINASI GROUP {{ group_letter }} BO1</h1> --> 
+            <h1 class="text-center mb-3">Babak Eliminasi {{ group_letter }}</h1>
             {% for team in teams %}
             <div class="mb-1">
                 <div class="card">
@@ -109,33 +82,6 @@
             setTimeout(function() {
                 window.location.href = "/drawing/{{ next_group_number }}";
             }, 500);
-        });
-    </script>
-
-    <script>
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-            let text = card.textContent;
-            let randomText = '';
-            let counter = 0;
-    
-            function randomizeText() {
-                if (counter < text.length) {
-                    // Add 3 random characters at a time
-                    for (let i = 0; i < 3; i++) {
-                        if (counter < text.length) {
-                            randomText += text.charAt(Math.floor(Math.random() * text.length));
-                            counter++;
-                        }
-                    }
-                    card.textContent = randomText;
-                    setTimeout(randomizeText, 100); // Reduced delay for faster text
-                } else {
-                    card.textContent = text; // Reset text to original after randomization
-                }
-            }
-    
-            randomizeText();
         });
     </script>
 </body>
