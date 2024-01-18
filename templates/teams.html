@@ -5,10 +5,11 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <link href="https://fonts.cdnfonts.com/css/instruction" rel="stylesheet">
+        <link href="https://fonts.cdnfonts.com/css/warownia" rel="stylesheet">
         <style>
             body {
-                background: #fff; /* Change background to grey for a gaming feel */
-                font-family: 'Instruction', sans-serif;
+                background: #000000; /* Change background to grey for a gaming feel */
+                font-family: sans-serif;
                 color: #fff; /* Change font color to white for contrast */
             }
     
@@ -45,11 +46,14 @@
                 height: 4vh;
                 background-color: #343a40; /* Darken card background for a gaming feel */
                 color: #fff; /* Change text color to white for contrast */
+                outline: 2px solid #ffff; /* Add white outline */
             }
 
             h1.text-center.mb-3 {
-                color: #000;
+                font-family: sans-serif;
+                color: #fff;
                 font-size: 60px;
+                font-weight: bold; /* Add this line */
             }
 
             .card {
@@ -60,6 +64,8 @@
                 display: flex;
                 justify-content: center; /* Horizontally center the text */
                 align-items: center; /* Vertically center the text */
+                overflow: hidden; /* Add this line */
+                overflow: hidden; /* Add this line */
             }
             .header-container {
                 margin-bottom: 0px; /* Adjust as needed */
@@ -120,16 +126,17 @@
             let counter = 0;
     
             function randomizeText() {
+                let possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
                 if (counter < text.length) {
                     // Add 3 random characters at a time
                     for (let i = 0; i < 3; i++) {
                         if (counter < text.length) {
-                            randomText += text.charAt(Math.floor(Math.random() * text.length));
+                            randomText += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
                             counter++;
                         }
                     }
                     card.textContent = randomText;
-                    setTimeout(randomizeText, 100); // Reduced delay for faster text
+                    setTimeout(randomizeText, 70); // Reduced delay for faster text
                 } else {
                     card.textContent = text; // Reset text to original after randomization
                 }
