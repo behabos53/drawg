@@ -1,0 +1,44 @@
+/* styles.css */
+
+.left-align-container {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+.text-primary {
+    color: #e31313 !important;
+}
+
+.custom-text {
+    font-size: 20px;
+}
+
+.card-body {
+    background-color: #f8f9fa;
+    padding: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+}
+
+.btn.btn-primary.btn-lg {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.card {
+    margin-bottom: 10px !important;
+}
+
+.resizable {
+    resize: both;
+    overflow: auto;
+}
