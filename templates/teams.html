@@ -66,6 +66,7 @@
                 align-items: center; /* Vertically center the text */
                 overflow: hidden; /* Add this line */
                 overflow: hidden; /* Add this line */
+                outline: 2px solid #ffff; /* Add white outline */
             }
             .header-container {
                 margin-bottom: 0px; /* Adjust as needed */
@@ -74,6 +75,8 @@
             #nextDrawButton {
                 margin-top: 10px;
             }
+            
+            
         </style>
 
         
@@ -123,30 +126,40 @@
     </script>
 
     <script>
+        const textLength = 20; // Set the length of the generated text here
+        const timeoutDuration = 5000; // Set the timeout duration here
+    
         const cards = document.querySelectorAll('.card');
         cards.forEach(card => {
             let text = card.textContent;
             let randomText = '';
             let counter = 0;
+            let randomizing = true;
     
             function randomizeText() {
                 let possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-                if (counter < text.length) {
-                    // Add 3 random characters at a time
-                    for (let i = 0; i < 3; i++) {
-                        if (counter < text.length) {
-                            randomText += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
-                            counter++;
-                        }
+                if (counter < text.length && randomizing && randomText.length < textLength) {
+                    // Add 1 random character at a time for smoother animation
+                    if (counter < text.length) {
+                        randomText += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+                        counter++;
                     }
                     card.textContent = randomText;
-                    setTimeout(randomizeText, 70); // Reduced delay for faster text
-                } else {
-                    card.textContent = text; // Reset text to original after randomization
+                    setTimeout(randomizeText, 100); // Reduced delay for smoother animation
                 }
             }
     
             randomizeText();
+    
+            // Stop randomizing after a specified duration
+            setTimeout(() => {
+                randomizing = false;
+            }, timeoutDuration);
+    
+            // Show the real text after 3 seconds
+            setTimeout(() => {
+                card.textContent = text;
+            }, 2000);
         });
     </script>
 </body>
