@@ -43,11 +43,18 @@
     
             @media screen and (min-width: 1080px) {
             .card {
+                /* existing styles */
                 height: 4vh;
-                background-color: #343a40; /* Darken card background for a gaming feel */
-                color: #fff; /* Change text color to white for contrast */
-                outline: 2px solid #ffff; /* Add white outline */
+                background-color: #000000;
+                color: #fff;
+                display: flex;
+                justify-content: center; /* Horizontally center the text */
+                align-items: center; /* Vertically center the text */
+                overflow: hidden; /* Add this line */
+                overflow: hidden; /* Add this line */
+                outline: 2px solid #ffcc49; /* Add white outline */
             }
+        }
 
             h1.text-center.mb-3 {
                 font-family: sans-serif;
@@ -56,18 +63,6 @@
                 font-weight: bold; /* Add this line */
             }
 
-            .card {
-                /* existing styles */
-                height: 4vh;
-                background-color: #343a40;
-                color: #fff;
-                display: flex;
-                justify-content: center; /* Horizontally center the text */
-                align-items: center; /* Vertically center the text */
-                overflow: hidden; /* Add this line */
-                overflow: hidden; /* Add this line */
-                outline: 2px solid #ffff; /* Add white outline */
-            }
             .header-container {
                 margin-bottom: 0px; /* Adjust as needed */
             }
@@ -75,8 +70,13 @@
             #nextDrawButton {
                 margin-top: 10px;
             }
-            
-            
+
+            .btn-danger {
+              color: #fff;
+              background-color: #dcaa35;
+              border-color: #dc3545;
+            }
+                        
         </style>
 
         
