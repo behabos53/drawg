@@ -21,7 +21,8 @@
             .spinner-border {
                 width: 3rem;
                 height: 3rem;
-                border-color: #e31313; /* Change spinner color to match text color */
+                margin-top: 10px;
+                border-color: #dcaa35; /* Change spinner color to match text color */
             }
     
             .text-primary   {
@@ -41,7 +42,7 @@
                 color: #fff; /* Change text color to white for contrast */
             }
     
-            @media screen and (min-width: 1080px) {
+            @media screen and (min-width: 1920px) {
             .card {
                 /* existing styles */
                 height: 4vh;
@@ -76,18 +77,23 @@
               background-color: #dcaa35;
               border-color: #dc3545;
             }
-                        
+            
+            .btn-danger:hover {
+              color: #fff;
+              background-color: #dcaa35;
+              border-color: #dcaa35;
+            }
         </style>
-
-        
     </head>
     <body>
-        <div class="header-container d-flex align-items-center justify-content-center">
-            <h1 class="text-center mb-3">BABAK ELEMINASI</h1>
+       <div class="header-container d-flex align-items-center justify-content-center">
+            <h1 class="text-center mb-3">BABAK ELIMINASI</h1>
             </div>
+<!--             
             <div class="header-container d-flex align-items-center justify-content-center">
             <h1 class="text-center mb-3">GROUP {{ group_letter }} BO1</h1>
         </div>
+-->        
 <div class="container py-4 left-align-container">
     <div class="row">
         <div class="col-md-4">
@@ -103,7 +109,7 @@
             {% endfor %}
             {% if group_number < 17 %}
                 <div class="text-center mb-4"> <!-- Add this div to center the button -->
-                    <button id="nextDrawButton" class="btn btn-danger btn-lg">Next Draw</button>
+                    <button id="nextDrawButton" class="btn btn-danger btn-lg" style="width: 300px; height: 70px;">Next Draw</button>
                     <div id="loadingMessage" style="display: none;">
                         <div class="spinner-border text-primary" role="status">
                             <span class="sr-only">Loading...</span>
@@ -121,45 +127,220 @@
             $('#loadingMessage').show();
             setTimeout(function() {
                 window.location.href = "/drawing/{{ next_group_number }}";
-            }, 500);
+            }, 3000);
         });
     </script>
 
     <script>
-        const textLength = 20; // Set the length of the generated text here
         const timeoutDuration = 5000; // Set the timeout duration here
     
         const cards = document.querySelectorAll('.card');
+        let teams = [
+        "Penghuni surga Esport",
+        "Chamenos",
+        "Akurat.co",
+        "FAST SQUAD",
+        "KuPu FamZ",
+        "Akurat Pride",
+        "PERTASHOP",
+        "Fhour Honour",
+        "SH ESPORTS",
+        "TEAM SLMT",
+        "Squad Qcit",
+        "Lacademy",
+        "Wartikum ESports",
+        "WOLF E-SPORT",
+        "Legenda Seluler",
+        "NONAME KINGS",
+        "THE DEPOK PLAYER (TDP)",
+        "PZR PANZER",
+        "One Galaxy ",
+        "PANCUNG MANTAP",
+        "Barrayrfifel Esport",
+        "Stardust KB",
+        "Shadow Crowz",
+        "DC' SHINIGAMI",
+        "MarOne E-sport ",
+        "PENGHITAM WAIFU ",
+        "SansKuyLiving Esport ",
+        "KALIMANTAN PRIDE",
+        "NATUS VINCERE ",
+        "WTB Wong Tulus Bro",
+        "INF Genuine⁴",
+        "TJA ESPORT",
+        "KNIGHT GRIDA",
+        "QUENNALDOZZ",
+        "Tizzcool",
+        "Daringo ",
+        "TREX ESPORT",
+        "ESI BANJAR ESPORT",
+        "Ruki",
+        "ESI BANJAR ESPORT B",
+        "PARTY NERAKA",
+        "KWSe",
+        "DEFEAT HANDAL",
+        "THEXYPHERSQUAD",
+        "slengki arap",
+        "sameng",
+        "HS+",
+        "NRC ESPORTS",
+        "ayam jago",
+        "Maximizer Esport",
+        "GACOR77",
+        "Lex Aeterna'",
+        "Xiu Amaterasu",
+        "Clever Clowns ",
+        "TKJ 2",
+        "DHE-LAST",
+        "ONE PRO SMG",
+        "PMI ESPORT",
+        "RwsReBorn",
+        "TABRAK MASUK",
+        "MAD GOMBER TEAM",
+        "VESAKHA ESPORTS",
+        "DISASTER PARTY",
+        "GRIFFIN",
+        "CALEG",
+        "PHOENIX STAR",
+        "mami baru",
+        "Vinomus Dynamic ",
+        "UNIBA ESPORT ",
+        "NOTHUMAN ",
+        "King Wolf",
+        "CROWS Sena",
+        "CROWS HELL",
+        "The Eternals",
+        "Lux The Honor",
+        "KOPI E-Sport",
+        "cadas 25",
+        "Nine King",
+        "BM1_SQUAD",
+        "Pokemon",
+        "Fiery Devils",
+        "OTKP BOYS",
+        "Star elite ",
+        "Lasga lord ",
+        "EVOS SPORT",
+        "KON",
+        "SPARTAN SOLDIER",
+        "DARK LEGEDNS ",
+        "White Tiger",
+        "Scarlet Slayer",
+        "BREN",
+        "NIGHT RAID CONQUEROS",
+        "GODs",
+        "Wings of freedom (WOFF)",
+        "PSIXA",
+        "midday Push ",
+        "king forest ",
+        "RAI GIYUU KYO",
+        "aero ",
+        "BK Weka Weka",
+        "Poke Amatir",
+        "Black Shadow",
+        "Wokwok JKT",
+        "TEAM GRYFFIN",
+        "FAUST ESPORTS",
+        "The Moriarty",
+        "V Fams S",
+        "Night spender",
+        "GODs",
+        "Full Counter (FC)",
+        "OVER KILLER",
+        "Lenshriny Community ",
+        "MENANG JAJAL",
+        "Revolution's",
+        "Arcxana Esports",
+        "Aaa kasian aaaa",
+        "THE LAST AIR BENDER",
+        "Kumar Kairi",
+        "Uciha genflash 2",
+        "PSUB ",
+        "FGF Eclipse",
+        "U Deserve Better",
+        "Harvester",
+        "DF ESPORT",
+        "black mamba international",
+        "tidak mengisi ",
+        "Tali Ban",
+        "nexon",
+        "Bubble Queen ",
+        "mariana boys",
+        "PRAGOS SQUAD",
+        "Biawak Tempur",
+        "IMPRESSIVE ",
+        "FL Team",
+        "Tidak mengisi ",
+        "Aliong City",
+        "SUGAR SQUAD ",
+        "PAK AGUS",
+        "Goji satoru",
+        "VANTES BETA",
+        "deuslra of andras",
+        "GLADIATOR",
+        "PaSalee ",
+        "Dire White Wolf ",
+        "Black Dragon ",
+        "Team RRG",
+        "VISSION STRONG ",
+        "ORCINUS LORENZ",
+        "The Depok player",
+        "MODERN TIGER",
+        "NOX1OUS",
+        "YM TEAM",
+        "West Java Pride",
+        "AETHER ASSASIN",
+        "NEXT",
+        "Vtuz",
+        "FNL ESPORT ",
+        "Behind The Scane",
+        "Griffin e-sport",
+        "TWB WELL Esport",
+        "DGF Blitz",
+        "BELAX ORCINUS",
+        "BKMsquat",
+        "DGF STAR",
+        "7Storm",
+        "DGF STARBOY",
+        "dgf fire",
+        "ARV TEAM",
+        "NATURE SPIRIT",
+        "ONGKRO",
+        "DGF MOON",
+        "OB ESPORT ",
+        "Cucu Zeus",
+        "Gegodan FC",
+        "segger waras",
+        "DGF INDONESIA ",
+        "DGF IMMORTAL",
+        "Rise 9 Lions",
+        "Supra bapak",
+        "LEGENDA",
+        ];
+    
         cards.forEach(card => {
             let text = card.textContent;
-            let randomText = '';
-            let counter = 0;
+            card.textContent = ''; // Initially set the text content to an empty string
             let randomizing = true;
     
-            function randomizeText() {
-                let possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-                if (counter < text.length && randomizing && randomText.length < textLength) {
-                    // Add 1 random character at a time for smoother animation
-                    if (counter < text.length) {
-                        randomText += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
-                        counter++;
-                    }
-                    card.textContent = randomText;
-                    setTimeout(randomizeText, 100); // Reduced delay for smoother animation
-                }
+            function generateRandomTeam() {
+                return teams[Math.floor(Math.random() * teams.length)];
             }
     
-            randomizeText();
+            // Start shuffling
+            let shuffleInterval = setInterval(() => {
+                if (randomizing) {
+                    let shuffled = generateRandomTeam();
+                    card.textContent = shuffled;
+                }
+            }, 100); // Shuffle every 300ms
     
-            // Stop randomizing after a specified duration
+            // Stop shuffling after a specified duration
             setTimeout(() => {
                 randomizing = false;
+                clearInterval(shuffleInterval); // Stop the shuffling interval
+                card.textContent = text; // Show the original text
             }, timeoutDuration);
-    
-            // Show the real text after 3 seconds
-            setTimeout(() => {
-                card.textContent = text;
-            }, 2000);
         });
     </script>
 </body>

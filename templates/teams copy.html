@@ -1,36 +1,105 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Group {{ group_number }}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <style>
-        .spinner-border {
-            width: 3rem;
-            height: 3rem;
-        }
-
-        .text-primary   {
-            color: #e31313 !important;
-        }
-
-        .btn-primary {
-            background-color: red;
-            border-color: red;
-        }
-        
-        .custom-text {
-            font-size: 20px;
-        }
+    <head>
+        <title>Group {{ group_number }}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <link href="https://fonts.cdnfonts.com/css/instruction" rel="stylesheet">
+        <link href="https://fonts.cdnfonts.com/css/warownia" rel="stylesheet">
+        <style>
+            body {
+                background: #000000; /* Change background to grey for a gaming feel */
+                font-family: sans-serif;
+                color: #fff; /* Change font color to white for contrast */
+            }
     
-    </style>
-</head>
-<body>
-    <div class="container py-5">
-        <h1 class="text-center mb-5">Group {{ group_number }}</h1>
-        <div class="row">
+            .left-align-container {
+                margin-left: 0;
+                margin-right: auto;
+            }
+    
+            .spinner-border {
+                width: 3rem;
+                height: 3rem;
+                margin-top: 10px;
+                border-color: #dcaa35; /* Change spinner color to match text color */
+            }
+    
+            .text-primary   {
+                color: #e31313 !important;
+            }
+            
+            .custom-text {
+                font-size: 20px;
+            }
+    
+            .card-body {
+                background-color: #212529; /* Darken card background for a gaming feel */
+                padding: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                text-align: center; // Add this line to center the content
+                color: #fff; /* Change text color to white for contrast */
+            }
+    
+            @media screen and (min-width: 1920px) {
+            .card {
+                /* existing styles */
+                height: 4vh;
+                background-color: #000000;
+                color: #fff;
+                display: flex;
+                justify-content: center; /* Horizontally center the text */
+                align-items: center; /* Vertically center the text */
+                overflow: hidden; /* Add this line */
+                overflow: hidden; /* Add this line */
+                outline: 2px solid #ffcc49; /* Add white outline */
+            }
+        }
+
+            h1.text-center.mb-3 {
+                font-family: sans-serif;
+                color: #fff;
+                font-size: 60px;
+                font-weight: bold; /* Add this line */
+            }
+
+            .header-container {
+                margin-bottom: 0px; /* Adjust as needed */
+            }
+
+            #nextDrawButton {
+                margin-top: 10px;
+            }
+
+            .btn-danger {
+              color: #fff;
+              background-color: #dcaa35;
+              border-color: #dc3545;
+            }
+            
+            .btn-danger:hover {
+              color: #fff;
+              background-color: #dcaa35;
+              border-color: #dcaa35;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="header-container d-flex align-items-center justify-content-center">
+            <h1 class="text-center mb-3">BABAK ELIMINASI</h1>
+            </div>
+<!--             
+            <div class="header-container d-flex align-items-center justify-content-center">
+            <h1 class="text-center mb-3">GROUP {{ group_letter }} BO1</h1>
+        </div>
+-->        
+<div class="container py-4 left-align-container">
+    <div class="row">
+        <div class="col-md-4">
+ <!--          <h1 class="text-center mb-3">BABAK ELEMINASI GROUP {{ group_letter }} BO1</h1> --> 
             {% for team in teams %}
-            <div class="col-md-3 mb-4">
+            <div class="mb-1">
                 <div class="card">
                     <div class="card-body text-center">
                         <h5 class="card-title"><strong class="custom-text">{{ team }}</strong></h5>
@@ -38,20 +107,19 @@
                 </div>
             </div>
             {% endfor %}
-        </div>
-        <div class="text-center mt-5">
             {% if group_number < 17 %}
-                <button id="nextDrawButton" class="btn btn-primary btn-lg">Next Draw</button>
-                <div id="loadingMessage" style="display: none;">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="sr-only">Loading...</span>
+                <div class="text-center mb-4"> <!-- Add this div to center the button -->
+                    <button id="nextDrawButton" class="btn btn-danger btn-lg" style="width: 300px; height: 70px;">Next Draw</button>
+                    <div id="loadingMessage" style="display: none;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
                     </div>
                 </div>
-            {% else %}
-                <h2>End of Draw</h2>
             {% endif %}
         </div>
     </div>
+</div>
 
     <script>
         $('#nextDrawButton').click(function() {
@@ -60,6 +128,41 @@
             setTimeout(function() {
                 window.location.href = "/drawing/{{ next_group_number }}";
             }, 500);
+        });
+    </script>
+
+    <script>
+        const timeoutDuration = 5000; // Set the timeout duration here
+        const maxLength = 20; // Set the maximum length of the shuffled text here
+
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            let text = card.textContent;
+            card.textContent = ''; // Initially set the text content to an empty string
+            let randomizing = true;
+
+            function generateRandomChar() {
+                let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                return characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+
+            // Start shuffling
+            let shuffleInterval = setInterval(() => {
+                if (randomizing) {
+                    let shuffled = '';
+                    for (let i = 0; i < maxLength; i++) {
+                        shuffled += generateRandomChar();
+                    }
+                    card.textContent = shuffled;
+                }
+            }, 300); // Shuffle every 150ms
+
+            // Stop shuffling after a specified duration
+            setTimeout(() => {
+                randomizing = false;
+                clearInterval(shuffleInterval); // Stop the shuffling interval
+                card.textContent = text; // Show the original text
+            }, timeoutDuration);
         });
     </script>
 </body>
