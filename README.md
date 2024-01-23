@@ -3,6 +3,9 @@
 **DRAW GROUP FOR TEAM CHAMPIONSHIP**
 
 Python 3.11.7
+https://www.python.org/downloads/release/python-3117/
+or 
+https://www.python.org/ftp/python/3.11.7/python-3.11.7-amd64.exe
 
 ## License
 
