@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 import random
+import os
+import glob
 
 app = Flask(__name__)
 
@@ -51,6 +53,29 @@ def drawing(group_number):
         return render_template('teams.html', teams=teams, next_group_number=group_number+1, group_number=group_number, group_letter=number_to_letter.get(group_number, ''))
 
     return get_teams(group_number)
+
+@app.route('/reset', methods=['POST'])
+def reset_group_list():
+    """
+    Handle POST request for '/reset' endpoint.
+
+    This function deletes all group list files to reset the drawing.
+
+    Returns:
+    - response: A redirect response to the home page.
+    """
+    try:
+        # Get a list of all group list files
+        group_list_files = glob.glob('group-list/group-*.txt')
+
+        # Delete each file
+        for file in group_list_files:
+            os.remove(file)
+
+        # Redirect to the home page
+        return redirect(url_for('home'))
+    except Exception as e:
+        return f"An error occurred while resetting the group list: {str(e)}"
 
 if __name__ == '__main__':
     app.run(debug=True)
