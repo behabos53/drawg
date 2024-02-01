@@ -21,7 +21,7 @@ def drawing(group_number):
     - str: The rendered HTML template with the teams and next group number.
     """
     def get_teams(group_number):
-        if group_number > 16:
+        if group_number > 4:
             return "No more groups to draw."
 
         file_path = f'group-list/group-{group_number}.txt'
