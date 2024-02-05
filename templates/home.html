@@ -138,11 +138,35 @@
 
             
                     <!-- <div class="mt-auto p-2 text-center"> -->
-                        <div class="text-center mb-4 mt-3">
+                    <!--    <div class="text-center mb-4 mt-3">
                             <a href="http://127.0.0.1:5000/drawing/1" class="btn btn-danger" style="width: 352px; height: 70px; margin-top: 15px; display: inline-flex; font-weight: bold; align-items: center; justify-content: center; background-color: #dcaa35; border-color: #dcaa35;">
                                 START
                             </a>
+                        </div> -->
+                        
+                        <div class="text-center mb-4"> <!-- Add this div to center the button -->
+                            <button id="DrawButton" class="btn btn-danger btn-lg" style="width: 352px; height: 70px;  background-color: #dcaa35; border-color: #dcaa35;">START</button>
+                            <div id="loadingMessage" style="display: none;">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
                         </div>                        
+
+    <script>
+        $(document).ready(function() {
+            $('#DrawButton').click(function() {
+              $(this).hide(); // hide the button
+              $('#loadingMessage').show(); // show the loader
+          
+              // Wait for 2 seconds before redirecting
+              setTimeout(function() {
+                window.location.href = 'http://127.0.0.1:5000/drawing/1';
+              }, 1000);
+            });
+          });
+    </script>      
+
                     <script>
                         const cards = document.querySelectorAll('.card');
                         cards.forEach(card => {
